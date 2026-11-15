@@ -175,6 +175,31 @@ git commit -m "Add first Git practice file"
 
 Commit tạo một mốc trong lịch sử local. `-m` theo sau là thông điệp ngắn mô tả thay đổi. Dùng động từ và nói rõ thay đổi, ví dụ `Add contact page` hoặc `Fix spelling in guide`.
 
+### Ai là tác giả commit? (`user.name` và `user.email`)
+
+Git ghi `user.name` và `user.email` vào metadata của commit. Đây là tên/email tác giả hiển thị trong lịch sử; chúng không phải username hay mật khẩu đăng nhập GitHub, và không quyết định quyền `push`.
+
+Kiểm tra cấu hình đang có và nguồn cấu hình:
+
+```bash
+git config --show-origin --get-regexp "^user\.(name|email)$"
+git log -1 --format="%an <%ae>"
+```
+
+`--global` áp dụng mặc định cho mọi repo trên máy. Nếu chỉ muốn đổi danh tính cho repo hiện tại, bỏ `--global`:
+
+```bash
+# Mọi repo trên máy
+git config --global user.name "Tên hiển thị"
+git config --global user.email "email@example.com"
+
+# Chỉ repo hiện tại; ghi đè cấu hình global tại đây
+git config user.name "Tên cho repo này"
+git config user.email "email@example.com"
+```
+
+GitHub dùng email của commit để liên kết commit với tài khoản. Dùng email đã thêm vào GitHub, hoặc địa chỉ `noreply` GitHub cấp nếu muốn ẩn email cá nhân. Email mới chỉ ảnh hưởng commit tạo sau khi đổi; commit cũ giữ nguyên tác giả/email đã ghi lúc tạo.
+
 ## 7. Xác nhận kết quả
 
 ```bash
@@ -221,6 +246,48 @@ git log --oneline -5
 - **Sửa file rồi nhưng commit không có sửa đổi mới**: chạy lại `git add <tên-file>` sau khi sửa.
 - **Stage nhầm file**: chưa commit thì bỏ file khỏi stage bằng `git restore --staged <tên-file>`, rồi xác nhận với `git status`. Lệnh này giữ nội dung trong working directory.
 - **Không chắc lệnh làm gì**: dừng lại, chạy `git status`, đọc trợ giúp bằng `git help <lệnh>` (ví dụ `git help add`), rồi mới tiếp tục.
+
+---
+
+## Ghi chú — `main` và `origin/main`
+
+Hai tên này thường trỏ đến hai mốc khác nhau:
+
+- `main` là nhánh local trên máy bạn. Đây là nhánh bạn đang làm việc.
+- `origin` là tên viết tắt của remote GitHub đã cấu hình trong repo.
+- `origin/main` là mốc local Git dùng để ghi nhớ commit mới nhất mà nó đã thấy trên nhánh `main` ở `origin`. Nó không phải bản thân nhánh trên GitHub và không tự cập nhật khi GitHub thay đổi.
+
+Khi hai bên đồng bộ:
+
+```text
+Máy bạn                              GitHub (remote tên origin)
+main       ───────────────┐          main
+origin/main ──────────────┴────────▶ commit A
+```
+
+Thực tế, `main` và `origin/main` là hai nhãn local cùng trỏ đến commit A; nhánh `main` trên GitHub cũng đang ở A.
+
+### Khi thay đổi xảy ra
+
+- Bạn commit trên máy: `main` tiến lên commit B; `origin/main` vẫn ở A cho đến khi đồng bộ. `git status -sb` có thể báo `ahead 1`.
+- GitHub nhận commit mới từ nơi khác: GitHub `main` tiến lên B, nhưng máy bạn vẫn nhớ `origin/main` ở A cho đến khi chạy `git fetch origin`. Sau fetch, `origin/main` cập nhật thành B; `main` local chưa tự thay đổi. `git status -sb` có thể báo `behind 1`.
+- `git push` gửi commit local lên GitHub.
+- `git pull` lấy thay đổi mới về và tích hợp vào nhánh hiện tại; về khái niệm, nó gồm fetch rồi tích hợp (merge hoặc rebase tùy cấu hình).
+
+### Bộ lệnh quan sát
+
+```bash
+git status -sb
+git branch -vv
+git fetch origin
+git status -sb
+```
+
+Đọc `git status -sb` trước/sau fetch. `fetch` cập nhật mốc `origin/main`; nó không tự sửa file đang làm và không tự gộp commit vào `main`.
+
+**Mẹo nhớ:** `main` = nhánh local mình làm; `origin/main` = dấu mốc local về nhánh main trên remote.
+
+Trong repo học này, hai mốc hiện cùng trỏ đến commit `0dec5e0`. File đang stage (nếu có) là thay đổi riêng trong working tree/staging area, không làm hai mốc commit này khác nhau.
 
 ---
 

@@ -1,3 +1,4 @@
 Lan dau hoc Git.
 Toi biet xem trang thai.
 Toi biet chon file de stage.
+Toi biet tao commit local.

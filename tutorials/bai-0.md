@@ -11,8 +11,8 @@ Các phần sau sẽ được bổ sung từng bài một. Đừng nhảy đến
 1. [**Bài 0 — Git là gì, repo là gì, kiểm tra Git**](bai-0.md)
 2. [**Bài 1 — Ba vùng quan trọng**](bai-1.md) — thư mục làm việc → staging area → lịch sử commit
 3. [**Bài 2 — Xem thay đổi và sửa nhầm**](bai-2.md) — `diff`, bỏ stage, khôi phục file
-4. **Bài 3 — Lịch sử:** `log`, `show`, commit tốt, `.gitignore`
-5. **Bài 4 — GitHub và remote:** `clone`, `remote`, `fetch`, `pull`, `push`
+4. [**Bài 3 — Lịch sử**](bai-3.md) — `log`, `show`, commit tốt, `.gitignore`
+5. [**Bài 4 — GitHub và remote**](bai-4.md) — `clone`, `remote`, `fetch`, `pull`, `push`
 6. **Bài 5 — Nhánh:** tạo, chuyển, đổi tên, xóa branch; HEAD
 7. **Bài 6 — Gộp công việc:** merge, fast-forward, conflict và cách giải quyết
 8. **Bài 7 — Pull Request:** vai trò dev, tester, reviewer/approver; CI và checklist
@@ -35,7 +35,7 @@ Lộ trình bao phủ Git dùng ở dòng lệnh và quy trình GitHub thường
 
 ## 1. Phân biệt bốn từ
 
-- **File**: tài liệu/code, ví dụ `practice/bai-0.md`.
+- **File**: tài liệu/code, ví dụ `tutorials/bai-0.md`.
 - **Thư mục làm việc** (working directory): các file bạn đang nhìn và sửa.
 - **Repository / repo**: thư mục được Git quản lý, có thư mục ẩn `.git` chứa lịch sử và cấu hình.
 - **Commit**: một mốc lưu trong lịch sử Git, có mã định danh và lời nhắn.
@@ -50,7 +50,7 @@ Mở Terminal/PowerShell tại thư mục dự án và tự gõ:
 git --version
 ```
 
-Bạn sẽ thấy phiên bản, ví dụ `git version ...`. Nếu báo không nhận ra lệnh `git`, hãy cài Git trước rồi mở lại terminal.
+Tùy chọn `--version` in phiên bản Git đã cài, ví dụ `git version ...`. Nếu báo không nhận ra lệnh `git`, hãy cài Git trước rồi mở lại terminal.
 
 ## 3. Kiểm tra thư mục hiện tại
 
@@ -59,7 +59,7 @@ pwd
 git status
 ```
 
-Trong PowerShell, `pwd` cũng dùng được. `git status` cho biết nhánh hiện tại và các file Git nhận ra. Đây là lệnh quan sát an toàn, hãy tập thói quen dùng nó khi chưa chắc chuyện gì xảy ra.
+`pwd` in đường dẫn đến thư mục terminal đang đứng. `git status` cho biết nhánh hiện tại và trạng thái thay đổi của các file. Đây là lệnh quan sát an toàn, hãy tập thói quen dùng nó khi chưa chắc chuyện gì xảy ra.
 
 Thông báo `not a git repository` nghĩa là terminal đang đứng ngoài repo. Di chuyển vào đúng thư mục dự án rồi thử lại. Không chạy `git init` ở một thư mục bất kỳ để làm mất dấu lỗi vị trí.
 
@@ -79,7 +79,7 @@ git config --global user.name "Tên của bạn"
 git config --global user.email "email@example.com"
 ```
 
-Cấu hình này ghi tên/email vào các commit mới. `--global` áp dụng cho mọi repo của tài khoản máy hiện tại. Email hiển thị trong commit có thể công khai trên GitHub; chọn email bạn muốn dùng cho hoạt động GitHub.
+`git config` đọc hoặc ghi cấu hình. `user.name` và `user.email` là hai mục Git dùng khi tạo commit mới. Chỉ ghi tên mục thì Git đọc giá trị hiện tại. Thêm giá trị trong ngoặc kép thì Git lưu giá trị đó. `--global` chọn cấu hình mặc định của tài khoản trên máy. Email trong commit có thể công khai trên GitHub, nên hãy dùng địa chỉ bạn muốn gắn với commit.
 
 ## Bài tập 0 — Nói lại bằng lời của bạn
 

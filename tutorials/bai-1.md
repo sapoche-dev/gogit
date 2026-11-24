@@ -47,6 +47,8 @@ git diff -- practice.txt
 
 Với file untracked, `git diff` thường chưa hiện nội dung vì file chưa được stage. Đây là điểm dễ nhầm: hãy stage file rồi xem staged diff ở bước 5.
 
+Trong lệnh trên, `--` đánh dấu rằng `practice.txt` phía sau là một đường dẫn. Git chỉ hiển thị phần sửa chưa stage của file được chỉ định.
+
 ## 4. Đưa đúng file vào staging area
 
 ```bash
@@ -85,6 +87,9 @@ git config --show-origin --get-regexp "^user\.(name|email)$"
 git log -1 --format="%an <%ae>"
 ```
 
+- `--show-origin` in nguồn của mỗi giá trị cấu hình, chẳng hạn đường dẫn tới file cấu hình. `--get-regexp` lọc tên các mục theo mẫu trong ngoặc kép, ở đây là `user.name` và `user.email`.
+- `git log` đọc lịch sử commit. `-1` chỉ lấy một commit. `--format` đặt cách hiển thị, với `%an` là tên tác giả và `%ae` là email tác giả.
+
 `--global` áp dụng mặc định cho mọi repo trên máy. Nếu chỉ muốn đổi danh tính cho repo hiện tại, bỏ `--global`:
 
 ```bash
@@ -106,7 +111,7 @@ git status
 git log --oneline -5
 ```
 
-Mong đợi: working tree sạch (không còn thay đổi chưa commit) và commit vừa tạo xuất hiện ở đầu lịch sử. Nếu commit báo chưa cấu hình tên/email, quay lại [Bài 0, mục 4](bai-0.md#4-thiết-lập-tên-hiển-thị-cho-commit-chỉ-làm-nếu-chưa-thiết-lập).
+Trong `git log --oneline -5`, `--oneline` in mỗi commit trên một dòng và `-5` giới hạn kết quả ở tối đa năm commit. Commit vừa tạo sẽ xuất hiện đầu danh sách. Nếu commit báo chưa cấu hình tên/email, quay lại [Bài 0, mục 4](bai-0.md#4-thiết-lập-tên-hiển-thị-cho-commit-chỉ-làm-nếu-chưa-thiết-lập).
 
 ## Drill A — Lặp lại ba lần
 
@@ -182,7 +187,9 @@ git fetch origin
 git status -sb
 ```
 
-Đọc `git status -sb` trước/sau fetch. `fetch` cập nhật mốc `origin/main`; nó không tự sửa file đang làm và không tự gộp commit vào `main`.
+- `git status -sb` ghép `-s` (dạng ngắn) và `-b` (hiện thông tin nhánh).
+- `git branch -vv` liệt kê các nhánh local kèm commit gần nhất, lời nhắn commit và nhánh theo dõi nếu có.
+- `git fetch origin` lấy dữ liệu từ remote tên `origin` và cập nhật các mốc theo dõi như `origin/main`. So sánh kết quả `git status -sb` trước và sau khi chạy để xem nhánh local đi trước hay đi sau.
 
 **Mẹo nhớ:** `main` = nhánh local mình làm; `origin/main` = dấu mốc local về nhánh main trên remote.
 

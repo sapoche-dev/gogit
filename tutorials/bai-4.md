@@ -247,4 +247,4 @@ Trong bài này, sau khi push nhánh thành công, hãy gửi kết quả để 
 
 </details>
 
-**Bài tiếp theo** Bài 5 sẽ luyện tạo, chuyển và quản lý nhánh.
+**Đọc tiếp** [Bài 5 — Tạo, chuyển, đổi tên và xóa nhánh](bai-5.md).

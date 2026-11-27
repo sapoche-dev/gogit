@@ -13,10 +13,10 @@ Các phần sau sẽ được bổ sung từng bài một. Đừng nhảy đến
 3. [**Bài 2 — Xem thay đổi và sửa nhầm**](bai-2.md) — `diff`, bỏ stage, khôi phục file
 4. [**Bài 3 — Lịch sử**](bai-3.md) — `log`, `show`, commit tốt, `.gitignore`
 5. [**Bài 4 — GitHub và remote**](bai-4.md) — `clone`, `remote`, `fetch`, `pull`, `push`
-6. **Bài 5 — Nhánh:** tạo, chuyển, đổi tên, xóa branch; HEAD
-7. **Bài 6 — Gộp công việc:** merge, fast-forward, conflict và cách giải quyết
-8. **Bài 7 — Pull Request:** vai trò dev, tester, reviewer/approver; CI và checklist
-9. **Bài 8 — Làm việc nhóm:** đồng bộ, review thay đổi, xử lý nhánh lỗi thời
+6. [**Bài 5 — Nhánh**](bai-5.md) — tạo, chuyển, đổi tên, xóa branch; HEAD
+7. [**Bài 6 — Gộp công việc**](bai-6.md) — merge, fast-forward, conflict và cách giải quyết
+8. [**Bài 7 — Pull Request**](bai-7.md) — vai trò dev, tester, reviewer/approver; CI và checklist
+9. [**Bài 8 — Làm việc nhóm**](bai-8.md) — đồng bộ, review thay đổi, xử lý nhánh lỗi thời
 10. **Bài 9 — Cứu hộ:** revert, reset, reflog, stash, cherry-pick, tag
 11. **Bài 10 — Git nâng cao và bảo vệ repo:** rebase, remote tracking, quyền, rules, release
 12. **Bài 11 — Bài tập mô phỏng quy trình nhóm hoàn chỉnh**
